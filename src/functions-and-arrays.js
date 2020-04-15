@@ -1,18 +1,73 @@
 // Iteration #1: Find the maximum
+const maxOfTwoNumbers = (firstNum, secondNum) => (firstNum > secondNum) ? firstNum : secondNum;
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
+function findLongestWord (arrayOfWords) {
+  let longerWord = ''; 
+
+  if (arrayOfWords == false) {
+    return null;
+  }
+
+  for (let word of arrayOfWords) {
+    if (word.length>longerWord.length) {
+      longerWord = word;
+    }
+  }
+  return longerWord
+}
+findLongestWord (words);
 // Iteration #3: Calculate the sum
 
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
+
+const sumNumbers = function (arrayOfNumbers) {
+  let sum = 0;
+    
+  for (let number of arrayOfNumbers) {
+    sum += number;
+  }
+  return sum;
+}
+
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
+function averageNumbers (numbersAvg) {
+  let sum = 0;
+  
+  if (numbersAvg == false) {
+    return null;
+  }
+
+  for (let i = 0; i < numbersAvg.length ; i++) {
+    sum += numbersAvg[i];
+  }
+
+  return sum/numbersAvg.length;
+}
+
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
+
+function averageWordLength (wordsArr) {
+  
+  if (wordsArr == false) {
+    return null;
+  }
+
+  let wordCounter = 0;
+  let totalLength = 0;
+  for (let word of wordsArr) {
+    wordCounter++;
+    totalLength+=word.length;
+  }
+  return totalLength/wordCounter;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -29,8 +84,34 @@ const wordsUnique = [
   'bring'
 ];
 
+function uniquifyArray (wordsUnique) {
+  if (wordsUnique == false) {
+    return null;
+  }
+  let uniqueArray = [];
+  for (let word of wordsUnique) {
+    if (uniqueArray.indexOf(word)<0) {
+      uniqueArray.push(word);
+    }
+  }
+  return uniqueArray;
+}
+
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
+
+function doesWordExist (wordsFind, wordToFind) {
+  if (wordsFind == false) {
+    return null;
+  }
+
+  for (let word of wordsFind) {
+    if (word === wordToFind) {
+      return true;
+    }
+  }
+  return false;
+}
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -46,6 +127,19 @@ const wordsCount = [
   'disobedience',
   'matter'
 ];
+
+function howManyTimes (wordsCount, wordToSearch) {
+  if (wordsCount == false) {
+    return 0;
+  }
+  let counter = 0;
+  for (let word of wordsCount) {
+    if (word === wordToSearch) {
+      counter++;
+    }
+  }
+  return counter;
+}
 
 // Iteration #8: Bonus
 
@@ -71,3 +165,34 @@ const matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+
+function greatestProduct(matrix) {
+  // This function assumes a square matrix and return the highest product.
+  let maxProduct = 0;
+  
+  //Init aux variables
+  let rowProduct = 0;
+  let columnProduct = 0;
+
+  //i for loop goes through all lines
+  //j for loop goes through all columns
+  for (let i = 0; i < matrix.length-4; i++) {
+    for (let j = 0; j < matrix[i].length-4; j++) {
+      //Calculates row and column products.
+      rowProduct = matrix[i][j] * matrix[i][j+1] * matrix[i][j+2] * matrix[i][j+3];
+      columnProduct = matrix[i][j] * matrix[i+1][j] * matrix[i+2][j] * matrix[i+3][j];
+      
+      //Checks if row product is bigger than column product
+      //Checks if row(or column) product is bigger than previously calculated and saves it.
+
+      if ((rowProduct >= columnProduct) && (rowProduct > maxProduct)) {
+          maxProduct = rowProduct;
+      } else {
+        if ( columnProduct > maxProduct) {
+          maxProduct = columnProduct;
+        }
+      }
+    }
+  }
+  return maxProduct
+}
