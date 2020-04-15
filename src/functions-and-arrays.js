@@ -194,5 +194,5 @@ function greatestProduct(matrix) {
       }
     }
   }
-  return maxProduct
+  return maxProduct;
 }
